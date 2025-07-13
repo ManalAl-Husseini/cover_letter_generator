@@ -1,65 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickCoverAI - Free AI Cover Letter Generator</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    h1 { color: #333; }
+    label, input, textarea { display: block; margin-top: 10px; width: 100%; }
+    button { margin-top: 20px; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    #output { margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; white-space: pre-wrap; }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;QuickCoverAI - Free AI Cover Letter Generator&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body { font-family: Arial; padding: 20px; background: #f4f4f4; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1 { color: #333; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label, input, textarea { display: block; margin-top: 10px; width: 100%; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>button { margin-top: 20px; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>#output { margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; white-space: pre-wrap; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;QuickCoverAI - AI Cover Letter Generator&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Fill out the form below, and get a full cover letter in seconds — powered by AI.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Your Name&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="name" placeholder="John Doe" /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Job Title&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="job" placeholder="Graphic Designer" /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Brief Background (1–2 sentences)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;textarea id="background" placeholder="I have 5 years of experience in branding and digital design..."&gt;&lt;/textarea&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;button onclick="generateLetter()"&gt;Generate Cover Letter&lt;/button&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="output"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function generateLetter() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const name = document.getElementById('name').value;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const job = document.getElementById('job').value;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const background = document.getElementById('background').value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const prompt = `Write a professional cover letter for a job as a ${job}. The applicant's name is ${name}. Their background: ${background}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Using a placeholder for AI for now</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const dummyResponse = `Dear Hiring Manager,\n\nMy name is ${name}, and I am excited to apply for the ${job} position at your company. With ${background}, I bring a strong combination of skills and experience to your team.\n\nThank you for your time and consideration.\n\nSincerely,\n${name}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('output').innerText = dummyResponse;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// If you want to connect to real GPT via API later, I’ll guide you</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <h1>QuickCoverAI - AI Cover Letter Generator</h1>
+  <p>Fill out the form below, and get a full cover letter in seconds — powered by AI.</p>
+
+  <label>Your Name</label>
+  <input type="text" id="name" placeholder="John Doe" />
+
+  <label>Job Title</label>
+  <input type="text" id="job" placeholder="Graphic Designer" />
+
+  <label>Brief Background (1–2 sentences)</label>
+  <textarea id="background" placeholder="I have 5 years of experience in branding and digital design..."></textarea>
+
+  <button onclick="generateLetter()">Generate Cover Letter</button>
+
+  <div id="output"></div>
+
+  <script>
+    async function generateLetter() {
+      const name = document.getElementById('name').value;
+      const job = document.getElementById('job').value;
+      const background = document.getElementById('background').value;
+
+      const prompt = `Write a professional cover letter for a job as a ${job}. The applicant's name is ${name}. Their background: ${background}`;
+
+      // Using a placeholder for AI for now
+      const dummyResponse = `Dear Hiring Manager,\n\nMy name is ${name}, and I am excited to apply for the ${job} position at your company. With ${background}, I bring a strong combination of skills and experience to your team.\n\nThank you for your time and consideration.\n\nSincerely,\n${name}`;
+
+      document.getElementById('output').innerText = dummyResponse;
+
+      // If you want to connect to real GPT via API later, I’ll guide you
+    }
+  </script>
 </body>
 </html>
