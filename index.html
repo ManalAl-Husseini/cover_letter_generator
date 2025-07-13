@@ -5,45 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QuickCoverAI - Free AI Cover Letter Generator</title>
   <style>
-    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
-    h1 { color: #333; }
-    label, input, textarea { display: block; margin-top: 10px; width: 100%; }
-    button { margin-top: 20px; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; }
-    #output { margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; white-space: pre-wrap; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 { color: #2a2a2a; }
+    label { margin-top: 15px; display: block; font-weight: bold; }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+    #output {
+      margin-top: 25px;
+      padding: 15px;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+    .btn-group {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>QuickCoverAI - AI Cover Letter Generator</h1>
-  <p>Fill out the form below, and get a full cover letter in seconds — powered by AI.</p>
 
-  <label>Your Name</label>
-  <input type="text" id="name" placeholder="John Doe" />
+  <h1>QuickCoverAI</h1>
+  <p>Generate a free, professional AI-written cover letter in seconds. No signup. No hassle.</p>
 
-  <label>Job Title</label>
-  <input type="text" id="job" placeholder="Graphic Designer" />
+  <label for="name">Your Name</label>
+  <input type="text" id="name" placeholder="Jane Doe" />
 
-  <label>Brief Background (1–2 sentences)</label>
-  <textarea id="background" placeholder="I have 5 years of experience in branding and digital design..."></textarea>
+  <label for="job">Job Title</label>
+  <input type="text" id="job" placeholder="Marketing Coordinator" />
+
+  <label for="background">Your Background (1–2 lines)</label>
+  <textarea id="background" placeholder="I have 3 years of experience running social media campaigns and email marketing strategies..."></textarea>
 
   <button onclick="generateLetter()">Generate Cover Letter</button>
 
-  <div id="output"></div>
+  <div id="output" style="display: none;"></div>
+
+  <div class="btn-group" id="actions" style="display: none;">
+    <button onclick="copyToClipboard()">Copy</button>
+    <button onclick="downloadText()">Download</button>
+  </div>
 
   <script>
-    async function generateLetter() {
-      const name = document.getElementById('name').value;
-      const job = document.getElementById('job').value;
-      const background = document.getElementById('background').value;
+    function generateLetter() {
+      const name = document.getElementById('name').value.trim();
+      const job = document.getElementById('job').value.trim();
+      const background = document.getElementById('background').value.trim();
+      const output = document.getElementById('output');
+      const actions = document.getElementById('actions');
 
-      const prompt = `Write a professional cover letter for a job as a ${job}. The applicant's name is ${name}. Their background: ${background}`;
+      if (!name || !job || !background) {
+        alert('Please fill out all fields.');
+        return;
+      }
 
-      // Using a placeholder for AI for now
-      const dummyResponse = `Dear Hiring Manager,\n\nMy name is ${name}, and I am excited to apply for the ${job} position at your company. With ${background}, I bring a strong combination of skills and experience to your team.\n\nThank you for your time and consideration.\n\nSincerely,\n${name}`;
+      output.style.display = 'block';
+      output.innerText = 'Generating your cover letter...';
+      actions.style.display = 'none';
 
-      document.getElementById('output').innerText = dummyResponse;
+      // Placeholder (simulate AI)
+      setTimeout(() => {
+        const letter = `Dear Hiring Manager,
 
-      // If you want to connect to real GPT via API later, I’ll guide you
+My name is ${name}, and I am excited to apply for the ${job} position at your organization. ${background} I am confident that my background makes me a strong fit for your team.
+
+Thank you for considering my application. I would be thrilled to further discuss how I can contribute to your goals.
+
+Sincerely,
+${name}`;
+
+        output.innerText = letter;
+        actions.style.display = 'block';
+      }, 1000);
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById('output').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
+
+    function downloadText() {
+      const text = document.getElementById('output').innerText;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "cover_letter.txt";
+      link.click();
     }
   </script>
+
 </body>
 </html>
