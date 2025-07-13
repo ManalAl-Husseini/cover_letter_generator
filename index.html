@@ -68,55 +68,70 @@
     <button onclick="downloadText()">Download</button>
   </div>
 
-  <script>
-    function generateLetter() {
-      const name = document.getElementById('name').value.trim();
-      const job = document.getElementById('job').value.trim();
-      const background = document.getElementById('background').value.trim();
-      const output = document.getElementById('output');
-      const actions = document.getElementById('actions');
+<script>
+  function generateLetter() {
+    const name = document.getElementById('name').value.trim();
+    const job = document.getElementById('job').value.trim();
+    const background = document.getElementById('background').value.trim();
+    const output = document.getElementById('output');
+    const actions = document.getElementById('actions');
 
-      if (!name || !job || !background) {
-        alert('Please fill out all fields.');
-        return;
-      }
-
-      output.style.display = 'block';
-      output.innerText = 'Generating your cover letter...';
-      actions.style.display = 'none';
-
-      // Placeholder (simulate AI)
-      setTimeout(() => {
-        const letter = `Dear Hiring Manager,
-
-My name is ${name}, and I am excited to apply for the ${job} position at your organization. ${background} I am confident that my background makes me a strong fit for your team.
-
-Thank you for considering my application. I would be thrilled to further discuss how I can contribute to your goals.
-
-Sincerely,
-${name}`;
-
-        output.innerText = letter;
-        actions.style.display = 'block';
-      }, 1000);
+    if (!name || !job || !background) {
+      alert('Please fill out all fields.');
+      return;
     }
 
-    function copyToClipboard() {
-      const text = document.getElementById('output').innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      });
-    }
+    output.style.display = 'block';
+    output.innerText = 'Generating your personalized cover letter...';
+    actions.style.display = 'none';
 
-    function downloadText() {
-      const text = document.getElementById('output').innerText;
-      const blob = new Blob([text], { type: 'text/plain' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = "cover_letter.txt";
-      link.click();
-    }
-  </script>
+    setTimeout(() => {
+      const intros = [
+        `I'm writing to express my strong interest in the ${job} position. My name is ${name}, and I bring a unique blend of skills and passion to the role.`,
+        `Please accept this letter as my formal application for the ${job} opening. I’m ${name}, and I have a strong background in ${background.toLowerCase()}.`,
+        `It is with great enthusiasm that I apply for the ${job} position. I’m ${name}, a driven professional with experience in ${background.toLowerCase()}.`
+      ];
+
+      const middles = [
+        `Over the past few years, I’ve developed a solid foundation in ${background.toLowerCase()}. This experience has honed my ability to solve problems, collaborate with cross-functional teams, and deliver measurable results. I’m particularly drawn to this opportunity because it aligns with my passion for growth and innovation.`,
+        `Throughout my career, I’ve taken pride in my ability to adapt quickly and contribute meaningfully. Whether working independently or as part of a team, I strive to exceed expectations. The ${job} role excites me because it offers a chance to leverage my strengths and continue evolving professionally.`,
+        `My background in ${background.toLowerCase()} has equipped me with a unique perspective and valuable technical and interpersonal skills. I’m confident in my ability to add value to your organization and contribute meaningfully from day one.`
+      ];
+
+      const endings = [
+        `I would welcome the opportunity to discuss how I can contribute to your team. Thank you for considering my application. I look forward to connecting.`,
+        `Thank you for taking the time to review my application. I’m eager to speak with you further and learn more about how I can support your goals.`,
+        `Please don’t hesitate to reach out if you have any questions. I’m excited about the possibility of working together and contributing to your organization’s success.`
+      ];
+
+      const closing = `\n\nSincerely,\n${name}`;
+
+      const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+      const fullLetter = `${random(intros)}\n\n${random(middles)}\n\n${random(endings)}${closing}`;
+
+      output.innerText = fullLetter;
+      actions.style.display = 'block';
+    }, 1200);
+  }
+
+  function copyToClipboard() {
+    const text = document.getElementById('output').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Copied to clipboard!');
+    });
+  }
+
+  function downloadText() {
+    const text = document.getElementById('output').innerText;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = "cover_letter.txt";
+    link.click();
+  }
+</script>
+
 
 </body>
 </html>
