@@ -3,24 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QuickCoverAI Pro - Advanced Cover Letter Generator</title>
+  <title>QuickCoverAI Pro - Career Success Suite</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       padding: 20px;
-      background: #f4f6f9;
+      background: linear-gradient(135deg, #f4f6f9, #e9eff5);
       color: #333;
       max-width: 900px;
       margin: auto;
     }
-    h1 { color: #1c1c1c; }
-    label { margin-top: 15px; display: block; font-weight: bold; }
+    h1 {
+      color: #007BFF;
+      font-size: 2.5rem;
+      border-bottom: 2px solid #007BFF;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #0056b3;
+      margin-top: 30px;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: bold;
+      color: #2a2a2a;
+    }
     input, textarea {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      background-color: #fefefe;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
     button {
       margin-top: 20px;
@@ -28,58 +44,87 @@
       background: #007BFF;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
+      transition: background 0.3s ease;
     }
-    button:hover { background: #0056b3; }
+    button:hover {
+      background: #0056b3;
+    }
     #output {
       margin-top: 25px;
       padding: 20px;
       background: #ffffff;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
       white-space: pre-wrap;
       line-height: 1.6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .btn-group {
       margin-top: 10px;
+    }
+    .btn-group button {
+      margin-right: 10px;
+      background-color: #28a745;
+    }
+    .btn-group button:hover {
+      background-color: #1e7e34;
+    }
+    small {
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-<h1>QuickCoverAI Pro</h1>
-<p>Create a fully customized, advanced AI-powered cover letter tailored to your career story.</p>
+<h1>QuickCoverAI Pro: Career Success Suite</h1>
+<p style="color: #444; font-size: 1.1rem;">Build a personalized, dynamic, and success-driven job application powered by advanced AI — now with multi-step support and a vibrant new design.</p>
 
-<label for="name">Your Name</label>
+<!-- STEP 1 -->
+<h2>Step 1: Basic Information</h2>
+<label for="name">Your Full Name</label>
 <input type="text" id="name" placeholder="Jane Doe" />
 
-<label for="job">Job Title You're Applying For</label>
-<input type="text" id="job" placeholder="Marketing Coordinator" />
+<label for="job">Target Job Title</label>
+<input type="text" id="job" placeholder="UX Designer" />
 
-<label for="background">Brief Background Summary</label>
-<textarea id="background" placeholder="I have 3 years of experience in digital marketing..."></textarea>
+<label for="email">Email Address</label>
+<input type="email" id="email" placeholder="jane@example.com" />
 
-<label for="goals">What are your long-term career goals?</label>
-<textarea id="goals" placeholder="I aim to lead a marketing department within the next 5 years..."></textarea>
+<!-- STEP 2 -->
+<h2>Step 2: Your Career Insights</h2>
+<label for="background">Brief Career Background</label>
+<textarea id="background" placeholder="Over 4 years managing cross-functional design projects..."></textarea>
 
-<label for="achievement">Describe a key achievement you're proud of</label>
-<textarea id="achievement" placeholder="Successfully led a campaign that increased ROI by 40%..."></textarea>
+<label for="goals">Long-Term Career Goals</label>
+<textarea id="goals" placeholder="To become a design director leading global UX teams..."></textarea>
 
-<label for="skills">What are your top 3 strengths or skills?</label>
-<textarea id="skills" placeholder="Strategic thinking, copywriting, data analytics..."></textarea>
+<label for="achievement">Key Achievement</label>
+<textarea id="achievement" placeholder="Revamped a mobile app interface, increasing retention by 25%..."></textarea>
 
-<label for="interest">Why are you interested in this company or role?</label>
-<textarea id="interest" placeholder="I admire your company's emphasis on innovation..."></textarea>
+<label for="skills">Top Strengths/Skills</label>
+<textarea id="skills" placeholder="UX research, wireframing, Figma, design leadership..."></textarea>
 
-<label for="motivation">What motivates you professionally?</label>
-<textarea id="motivation" placeholder="I'm driven by solving complex challenges and helping teams grow..."></textarea>
+<label for="interest">Why This Role/Company?</label>
+<textarea id="interest" placeholder="I'm impressed by your commitment to accessibility and user empowerment..."></textarea>
 
-<label><input type="checkbox" id="premium" /> I'm a Premium user (enhanced language, longer letter, extra perks)</label>
+<label for="motivation">What Drives You Professionally?</label>
+<textarea id="motivation" placeholder="I'm energized by solving problems that improve people's lives..."></textarea>
 
-<button onclick="generateLetter()">Generate Cover Letter</button>
+<!-- STEP 3 -->
+<h2>Step 3: Upload Your Resume (Optional)</h2>
+<input type="file" id="resume" accept=".pdf,.doc,.docx" />
+<p><small>This allows us to further tailor your cover letter using your past experience.</small></p>
 
+<!-- PREMIUM OPTION -->
+<label><input type="checkbox" id="premium" /> I have a Premium Account (AI-enhanced tone, resume parsing, priority formatting)</label>
+
+<!-- GENERATE -->
+<button onclick="generateLetter()">Generate My Cover Letter</button>
+
+<!-- OUTPUT -->
 <div id="output" style="display: none;"></div>
 <div class="btn-group" id="actions" style="display: none;">
   <button onclick="copyToClipboard()">Copy</button>
@@ -90,6 +135,7 @@
 function generateLetter() {
   const name = document.getElementById('name').value.trim();
   const job = document.getElementById('job').value.trim();
+  const email = document.getElementById('email').value.trim();
   const background = document.getElementById('background').value.trim();
   const goals = document.getElementById('goals').value.trim();
   const achievement = document.getElementById('achievement').value.trim();
@@ -97,46 +143,40 @@ function generateLetter() {
   const interest = document.getElementById('interest').value.trim();
   const motivation = document.getElementById('motivation').value.trim();
   const premium = document.getElementById('premium').checked;
+  const resumeUploaded = document.getElementById('resume').files.length > 0;
 
   const output = document.getElementById('output');
   const actions = document.getElementById('actions');
 
-  if (!name || !job || !background || !goals || !achievement || !skills || !interest || !motivation) {
-    alert('Please complete all fields.');
+  if (!name || !job || !email || !background || !goals || !achievement || !skills || !interest || !motivation) {
+    alert('Please fill in all required fields.');
     return;
   }
 
   output.style.display = 'block';
-  output.innerText = 'Generating your tailored cover letter...';
+  output.innerText = 'Analyzing your inputs...';
   actions.style.display = 'none';
 
   setTimeout(() => {
-    const complexIntro = `Dear Hiring Manager,\n\nMy name is ${name}, and I am excited to apply for the ${job} position. With a professional background rooted in ${background.toLowerCase()}, I bring both dedication and vision to every opportunity I pursue.`;
-
-    const careerVision = `\n\nMy long-term ambition is to ${goals}. I believe this role is a strategic step in that direction, offering challenges that align with my growth mindset and professional development.`;
-
-    const notableAchievement = `\n\nOne of my most significant achievements to date was when I ${achievement}. This experience not only affirmed my capabilities but also reinforced my belief in data-driven success and collaborative execution.`;
-
-    const skillBlock = `\n\nI consider my key strengths to be: ${skills}. These competencies allow me to tackle projects from both creative and analytical perspectives, ensuring well-rounded solutions that drive results.`;
-
-    const companyConnection = `\n\nWhat truly draws me to this opportunity is ${interest}. I resonate deeply with your mission and see a strong cultural alignment that would enable me to contribute meaningfully.`;
-
-    const personalDrive = `\n\nI am motivated by ${motivation}, which fuels my enthusiasm to excel and continuously refine my skill set.`;
-
-    const closing = `\n\nThank you for considering my application. I welcome the opportunity to further discuss how my experience and goals align with your team’s needs.` +
-                    `\n\nSincerely,\n${name}`;
-
-    let fullLetter = complexIntro + careerVision + notableAchievement + skillBlock + companyConnection + personalDrive + closing;
+    let intro = `Dear Hiring Manager,\n\nMy name is ${name}, and I am applying for the ${job} role. With experience in ${background.toLowerCase()}, I bring passion and strategic value to every challenge.`;
+    let mid = `\n\nMy long-term goal is to ${goals}, and I see this position as an ideal step toward that vision. A recent achievement I'm especially proud of is when I ${achievement}, demonstrating initiative and measurable impact.`;
+    let skillsBlock = `\n\nMy core strengths include ${skills}, enabling me to contribute to high-performing teams and drive innovation.`;
+    let interestBlock = `\n\nWhat excites me most about your company is ${interest}. Coupled with my motivation — ${motivation} — I believe I would thrive and contribute meaningfully to your goals.`;
+    let close = `\n\nThank you for your time and consideration. I look forward to discussing how my experience aligns with your team.\n\nSincerely,\n${name}\n${email}`;
 
     if (premium) {
-      fullLetter = `Dear Esteemed Hiring Committee,\n\nMy name is ${name}, and I am writing to express my keen interest in the position of ${job}. Backed by a strong foundation in ${background.toLowerCase()}, I have cultivated a unique blend of strategic insight and hands-on expertise that I believe makes me a compelling candidate.\n\n` +
-                   `My professional vision is guided by a clear goal: ${goals}. To that end, I actively seek roles that challenge my thinking and encourage continual evolution. In my previous roles, I have demonstrated a consistent ability to deliver outstanding outcomes, such as when I ${achievement}.\n\n` +
-                   `My core strengths include ${skills}, which empower me to engage with cross-functional teams and drive initiatives from ideation through to execution.\n\n` +
-                   `The reason I am especially interested in this opportunity is because ${interest}. The values and direction of your company align closely with my personal and professional ethos. Moreover, ${motivation} is a key factor that energizes my day-to-day commitment to excellence.\n\n` +
-                   `I would be honored to further explore how my experience and aspirations could contribute to your organization's success. Thank you for your consideration.\n\nWarm regards,\n${name}`;
+      intro = `Dear Esteemed Hiring Committee,\n\nWith great enthusiasm, I express my interest in the ${job} opportunity. My name is ${name}, and with a foundation in ${background.toLowerCase()}, I have cultivated a unique blend of analytical depth and creative thinking.`;
+      mid = `\n\nProfessionally, I aim to ${goals}. One of my proudest accomplishments — ${achievement} — exemplifies my drive for excellence.`;
+      skillsBlock = `\n\nI bring strengths in ${skills}, which I’ve consistently applied to deliver forward-thinking results.`;
+      interestBlock = `\n\nWhat draws me to your company is ${interest}. I’m especially inspired by how this aligns with my personal motivation: ${motivation}.`;
+      close = `\n\nThank you for considering my application. I would be delighted to connect further.\n\nWarm regards,\n${name}\n${email}`;
     }
 
-    output.innerText = fullLetter;
+    if (resumeUploaded) {
+      close = close.replace("Sincerely", "Sincerely (Resume Attached)");
+    }
+
+    output.innerText = intro + mid + skillsBlock + interestBlock + close;
     actions.style.display = 'block';
   }, 1500);
 }
